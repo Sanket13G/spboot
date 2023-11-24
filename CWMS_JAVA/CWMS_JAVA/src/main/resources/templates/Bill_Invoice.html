@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invoice Bill</title>
+<style>
+/* Define page size and margins here */
+@page {
+	margin: 0.7cm;
+	margin-top: 0.5cm;
+	/* Adjust the margin values as needed (e.g., 1cm for smaller margins) */
+}
+
+@media print {
+    .invoice-row {
+        page-break-before: always;
+    }
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th, .table td {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+}
+
+.table td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.horizontal {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 39%;
+	float: left;
+}
+
+.part-2 {
+	font-size: 12pt;
+	width: 30%;
+	float: left;
+}
+
+.part-3 {
+	font-size: 10pt;
+	width: 30%;
+	float: left;
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+</style>
+</head>
+
+<body>
+
+	<h1 class="text-center">
+		<b>DGDC LIMITED </b>
+	</h1>
+	<p class="text-center" style="margin: 1pt;">ADDRESS FOR SUPPLY OF
+		SERVICE:</p>
+	<p class="text-center" style="margin: 1pt;">Unit No.50, Plot F-1
+		SDF, Gem &amp; Jewellery Complex 1,SEEPZ-SEZ, Mumbai -400096</p>
+
+	<div class="horizontal" style="margin-top: 5px;">
+		<div class="part-1">
+			<p style="font-size: 11pt">
+				SAC CODE: <span th:text="${Branch.sacCode}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC PAN NO: <span th:text="${Branch.Pan_No}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC CIN: <span th:text="${Branch.cin}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC GSTIN: <span th:text="${Branch.GST_No}"></span>
+			</p>
+		</div>
+
+		<div class="part-2" style="margin-top: 15px;">
+			Print Dt: <span style="font-size: 11pt; margin-top: 10px;"
+				th:text="${currentDateTime}"></span>
+		</div>
+
+		<div class="part-3">
+			<p style="font-size: 11pt">CUSTOMER GSTIN NO</p>
+			<p style="font-size: 11pt">
+				<span th:text="${gstNo}"></span>
+			</p>
+		</div>
+	</div>
+
+	<div class="horizontal text-center"
+		style="border: 0.5px black solid; margin-top: 5px">
+
+		<div class="part-1" style="margin-top: 8px; margin-bottom: 8px;">
+			Bill For Date from <span th:text="${fromDate}"></span> to <span
+				th:text="${toDate}"></span>
+		</div>
+
+		<div class="part-2" style="margin-top: 8px; margin-bottom: 8px">
+			Bill No: <span th:text="${Invoice.billNO}"></span>
+		</div>
+		<div class="part-3" style="margin-top: 8px; margin-bottom: 8px">
+			Date: <span th:text="${toDate}"></span>
+		</div>
+
+	</div>
+	<h3 th:text="${party}" class="text-center"></h3>
+
+	<p style="font-size: 10pt">
+		DEAR SIR,<br /> PLACED BELOW ARE THE DETAILS OF SHIPMENTS HANDLED BY
+		CUSTODIANS OFFICE DURING THE MONTH AT SEEPZ
+
+	</p>
+
+	<table class="table" style="margin-top: 5px;">
+		<thead>
+			<tr class="text-center">
+				<th rowspan="2" style="width: 12%;">Date</th>
+				<th colspan="2" style="width: 10%;">Import</th>
+				<th colspan="2" style="width: 10%;">Export</th>
+				<th rowspan="2" style="width: 8%;">Total pkgs</th>
+				<th rowspan="2" style="width: 8%;">IIND SAT</th>
+				<th rowspan="2" style="width: 8%;">Demurages</th>
+				<th colspan="4" style="width: 30%;">Export</th>
+				<th colspan="4" style="width: 30%;">Import</th>
+			</tr>
+			<tr class="text-center">
+				<th style="width: 5%;">Regular</th>
+				<th style="width: 5%;">Subcont</th>
+				<th style="width: 5%;">Regular</th>
+				<th style="width: 5%;">Subcont</th>
+				<th style="width: 5%;">SC</th>
+				<th style="width: 5%;">HW Wt</th>
+				<th style="width: 5%;">PC</th>
+				<th style="width: 5%;">OC</th>
+				<th style="width: 5%;">SC</th>
+				<th style="width: 5%;">HW Wt</th>
+				<th style="width: 5%;">PC</th>
+				<th style="width: 5%;">OC</th>
+			</tr>
+		</thead>
+		<tbody class="text-center">
+			<!-- Use page breaks as needed -->
+			<tr th:each="invoiceDetail : ${invoiceDetails}" class="text-center">
+				<td
+					th:text="${#dates.format(invoiceDetail.invoiceDate, 'dd/MM/yyyy')}"></td>
+				<td th:text="${invoiceDetail.importNoOfPackages}"></td>
+
+				<td th:text="${invoiceDetail.importSubNop}"></td>
+				<td th:text="${invoiceDetail.exportNoOfPackages}"></td>
+				<td th:text="${invoiceDetail.exportSubNop}"></td>
+
+				<td th:text="${invoiceDetail.totalPackages}"></td>
+				<td
+					th:text="${invoiceDetail.holidayRate != 0.0 ? invoiceDetail.holidayRate : ''}"></td>
+				<td
+					th:text="${invoiceDetail.demuragesRate != 0.0 ? invoiceDetail.demuragesRate : ''}"></td>
+				<!-- Add 4 <td> elements here for Import -->
+				<td
+					th:text="${invoiceDetail.exportScRate != 0.0 ? invoiceDetail.exportScRate : ''}"></td>
+				<td
+					th:text="${invoiceDetail.exportHpRate != 0.0 ? invoiceDetail.exportHpRate : ''}"></td>
+					
+				<td
+					th:text="${invoiceDetail.exportPcRate != 0.0 ? invoiceDetail.exportPcRate : ''}"></td>
+				
+				<td
+					th:text="${invoiceDetail.exportPenalty != 0.0 ? invoiceDetail.exportPenalty : ''}"></td>
+				<!-- Add 4 <td> elements here for Export -->
+				<td
+					th:text="${invoiceDetail.importScRate != 0.0 ? invoiceDetail.importScRate : ''}"></td>
+					<td
+					th:text="${invoiceDetail.importHpRate != 0.0 ? invoiceDetail.importHpRate : ''}"></td>
+					
+				<td
+					th:text="${invoiceDetail.importPcRate != 0.0 ? invoiceDetail.importPcRate : ''}"></td>
+				
+				<td
+					th:text="${invoiceDetail.importPenalty != 0.0 ? invoiceDetail.importPenalty : ''}"></td>
+			</tr>
+
+			<tr class="text-center">
+				<td>Total</td>
+				<td
+					th:text="${sumImportNoOfPackages != 0.0 ? sumImportNoOfPackages : '' }"></td>
+				<td th:text="${sumSubImportNop != 0.0 ? sumSubImportNop : ''}"></td>
+
+				<td
+					th:text="${sumExportNoOfPackages != 0.0 ? sumExportNoOfPackages : ''}"></td>
+				<td th:text="${sumSubExportNop != 0.0 ? sumSubExportNop : ''}"></td>
+
+				<td th:text="${sumTotal != 0.0 ? sumTotal : ''}"></td>
+				<td th:text="${sumHoliday != 0.0 ? sumHoliday : ''}"></td>
+				
+				<td th:text="${sumDemuragesRate != 0.0 ? sumDemuragesRate : ''}"></td>
+				
+				<td th:text="${sumExportSCRate != 0.0 ? sumExportSCRate : ''}"></td>
+				<td th:text="${sumExportHeavyRate != 0.0 ? sumExportHeavyRate : ''}"></td>
+				<td th:text="${sumExportPCRate != 0.0 ? sumExportPCRate : ''}"></td>
+				
+				<td th:text="${sumExportPenalty != 0.0 ? sumExportPenalty : ''}"></td>
+
+				<td th:text="${sumImportSCRate != 0.0 ? sumImportSCRate : ''}"></td>
+				<td th:text="${sumImportHeavyRate != 0.0 ? sumImportHeavyRate : ''}"></td>
+				<td th:text="${sumImportPCRate != 0.0 ? sumImportPCRate : ''}"></td>
+				
+				<td th:text="${sumImportPenalty != 0.0 ? sumImportPenalty : ''}"></td>
+			</tr>
+
+			<tr>
+				<td colspan="1">Total Amount</td>
+				<td colspan="1" th:text="${invoicePackage.importRate}"></td>
+				<td colspan="1" th:text="${invoicePackage.importSubRate}"></td>
+				<td colspan="1" th:text="${invoicePackage.exportRate}"></td>
+				<td colspan="1" th:text="${invoicePackage.exportSubRate}"></td>
+				<td colspan="9"> NIPT PACKAGES: <span th:text="${sumNiptNoOfPackages != 0.0 ? sumNiptNoOfPackages : ''}"></span>  </td>
+				<td colspan="2" th:text="${Invoice.billAmount}"></td>
+			</tr>
+
+			<tr>
+				<td colspan="1">Rate RS--></td>
+				<td colspan="1" th:text="${importSimpleRate}"></td>
+				<td colspan="1" th:text="${importSimpleRate}"></td>
+				<td colspan="1" th:text="${exportSimpleRate}"></td>
+				<td colspan="1" th:text="${exportSimpleRate}"></td>
+				<td th:if="${IGST == 0}" colspan="9">9%CGST+9%SGST</td>
+				<td th:if="${IGST != 0}" colspan="9">18%IGST</td>
+				<td colspan="2" th:text="${Invoice.taxAmount}"></td>
+			</tr>
+
+			<tr>
+
+				<td colspan="6" style="margin-left: 8px;">ZERO RATED SUPPLY OF SERVICES TO SEZ UNITS</td>
+				<td colspan="8">GRAND TOTAL</td>
+				<td colspan="2" th:text="${Invoice.totalInvoiceAmount}"></td>
+
+
+			</tr>
+
+
+
+		</tbody>
+
+
+	</table>
+
+	<p style="margin-left: 8px;">kindly make payment to next multiple of 1 Rupees</p>
+
+	<div class="page-break"></div>
+
+	<!--  New Page  -->
+
+	<h1 class="text-center">
+		<b>DGDC LIMITED </b>
+	</h1>
+	<p class="text-center" style="margin: 1pt;">ADDRESS FOR SUPPLY OF
+		SERVICE:</p>
+	<p class="text-center" style="margin: 1pt;">Unit No.50, Plot F-1
+		SDF, Gem &amp; Jewellery Complex 1,SEEPZ-SEZ, Mumbai -400096</p>
+
+	<div class="horizontal" style="margin-top: 5px;">
+		<div class="part-1">
+			<p style="font-size: 11pt">
+				SAC CODE: <span th:text="${Branch.sacCode}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC PAN NO: <span th:text="${Branch.Pan_No}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC CIN: <span th:text="${Branch.cin}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC GSTIN: <span th:text="${Branch.GST_No}"></span>
+			</p>
+		</div>
+
+		<div class="part-2" style="margin-top: 15px;">
+			Print Dt: <span style="font-size: 11pt; margin-top: 10px;"
+				th:text="${currentDateTime}"></span>
+		</div>
+
+		<div class="part-3">
+			<p style="font-size: 11pt">CUSTOMER GSTIN NO</p>
+			<p style="font-size: 11pt">
+				<span th:text="${gstNo}"></span>
+			</p>
+		</div>
+	</div>
+
+	<div class="horizontal text-center"
+		style="border: 0.5px black solid; margin-top: 5px">
+
+		<div class="part-1" style="margin-top: 8px; margin-bottom: 8px;">
+			Bill For Date from <span th:text="${fromDate}"></span> to <span
+				th:text="${toDate}"></span>
+		</div>
+
+		<div class="part-2" style="margin-top: 8px; margin-bottom: 8px">
+			Bill No : <span th:text="${Invoice.billNO}"></span>
+		</div>
+		<div class="part-3" style="margin-top: 8px; margin-bottom: 8px">
+			Date: <span th:text="${toDate}"></span>
+		</div>
+	</div>
+	<p style="font-size: 10pt; margin-top: 10px;">
+		<b>YOU ARE REQUESTED TO ENSURE <br /> A ) THE BILL TO BE PAID
+			WITHIN THREE DAYS OF RECEIPT OF BILL <br /> B ) ONLY
+			E-PAYMENT/DIGITAL PAYMENT IS MADE AS PER DETAILS WITH MAIL TO DGDC <br />
+			Name of Bank: Axis Bank Limited IFSC CODE No:UTIB0000173 A/C NO.:
+			923020012460018
+		</b> <br /> C ) Axis Bank TRANSFER CHQ TO BE DEPOSITED DIRECTLY DGDC'S
+		BANK ACCOUNT WITH MAIL TO DGDC <br /> D ) MENTION THE PARTYCODE, NAME
+		, BILL NO IN EPAYMENT REMARK COLUMN <br /> E ) KINDLY SEND
+		CONFIRMATION EMAIL NOTIFYING THE UTR NUMBER AND DATE OF E-PAYMENT TO
+		FOLLOWING EMAIL ID <b>dgdcseepz@gmail.com <br /> F ) ACCEPTING OF
+			HARD CHEQUES HAS BEEN DISCONTINUED ONLY E-CHEQUES/NEFT/RTGS/ONLINE
+			PYMT <br /> G ) NON PAYMENT OF BILL IN TIME WILL AFFECT PARCEL
+			SERVICES FOR WHICH UNIT IS ONLY RESPONSIBLE,
+		</b>
+	</p>
+	<p style="font-size: 10pt; margin-left: 8px; margin-top: 15px;">NOTE:
+		Any Discrepancies in the bill must be initmated within two days of
+		receipt of bill</p>
+	<br />
+
+	<span style="font-size: 10pt; margin-left: 8px;"> THIS IS COMPUTER GENERATED INVICE HENCE NO SIGNATURE REQUIRED</span>
+	
+
+
+</body>
+
+</html>

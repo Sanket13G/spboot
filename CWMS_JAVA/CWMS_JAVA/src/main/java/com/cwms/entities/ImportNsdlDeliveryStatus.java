@@ -1,0 +1,90 @@
+package com.cwms.entities;
+
+import jakarta.persistence.*;
+@Entity
+@Table(name="imp_nsdl_delivery_Status")
+public class ImportNsdlDeliveryStatus 
+{
+
+	@Id
+	@GeneratedValue
+	@Column(name = "Sr_no",length = 5)
+	private Long srno;
+		
+    @Column(name = "Company_Id",length = 6)
+    private String companyId;
+   
+    @Column(name = "Branch_Id",length = 6)
+    private String branchId;
+
+    
+    @Column(name = "nsdl_Delivery_Staus",length = 50)
+    private String nsdlDeliveryStaus;
+
+
+	public ImportNsdlDeliveryStatus() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public ImportNsdlDeliveryStatus(Long srno, String companyId, String branchId, String nsdlDeliveryStaus) {
+		super();
+		this.srno = srno;
+		this.companyId = companyId;
+		this.branchId = branchId;
+		this.nsdlDeliveryStaus = nsdlDeliveryStaus;
+	}
+
+
+	public Long getSrno() {
+		return srno;
+	}
+
+
+	public void setSrno(Long srno) {
+		this.srno = srno;
+	}
+
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+
+
+	public String getBranchId() {
+		return branchId;
+	}
+
+
+	public void setBranchId(String branchId) {
+		this.branchId = branchId;
+	}
+
+
+	public String getNsdlDeliveryStaus() {
+		return nsdlDeliveryStaus;
+	}
+
+
+	public void setNsdlDeliveryStaus(String nsdlDeliveryStaus) {
+		this.nsdlDeliveryStaus = nsdlDeliveryStaus;
+	}
+
+
+	@Override
+	public String toString() {
+		return "ImportNsdlDeliveryStatus [srno=" + srno + ", companyId=" + companyId + ", branchId=" + branchId
+				+ ", nsdlDeliveryStaus=" + nsdlDeliveryStaus + "]";
+	}
+
+    
+    
+    
+	
+}

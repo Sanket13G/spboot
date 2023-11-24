@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invoice</title>
+
+<style>
+/* Define page size and margins here */
+@page {
+	margin: 0.7cm;
+	margin-top: 0.5cm;
+	/* Adjust the margin values as needed (e.g., 1cm for smaller margins) */
+}
+
+.blank-cell {
+	border: none;
+	padding: 0; /* Optional: remove any padding/margin */
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th, .table td {
+	/* text-align: center;
+	justify-content: center; */
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+}
+
+.table thead {
+	height: 20px;
+}
+
+.table td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.customer {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 65%;
+	float: left;
+}
+
+.part-2 {
+	font-size: 10pt;
+	width: 35%;
+	float: right;
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+</style>
+
+</head>
+<body>
+
+	<h1 class="text-center">
+		<b>DGDC LIMITED </b>
+	</h1>
+	<p class="text-center" style="margin: 1pt;">ADDRESS FOR SUPPLY OF
+		SERVICE:</p>
+	<p class="text-center" style="margin: 1pt;">Unit No.50, Plot F-1
+		SDF, Gem &amp; Jewellery Complex 1,SEEPZ-SEZ, Mumbai -400096</p>
+
+	<h1 class="text-center">
+		<b>Tax Invoice</b>
+	</h1>
+
+
+	<div class="customer" style="border: 1px grey solid">
+
+		<div class="part-1">
+
+			<p>
+				Customer Name: <b> <span th:text="${party.partyName}"></span></b>
+			</p>
+
+			<p>
+				Customer Exim Code:
+				<!--  <span th:text="${party.partyName}"></span> -->
+			</p>
+
+			<p>
+				Customer Code:
+				<!-- <span th:text="${party.partyName}"></span> -->
+			</p>
+
+			<p>
+				Address: <span th:text="${party.address1}"></span>
+			</p>
+
+		</div>
+
+		<div class="part-2">
+
+			<p style="font-size: 11pt">
+				DGDC GSTIN: <b> <span th:text="${Branch.GST_No}"></span></b>
+			</p>
+
+			<p style="font-size: 11pt">
+				DGDC PAN NO: <span th:text="${Branch.Pan_No}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC CIN: <span th:text="${Branch.cin}"></span>
+			</p>
+
+
+
+		</div>
+
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="height: 35px; width: 25%;" class="text-center"><b>Customer
+						GSTIN </b></th>
+				<th style="height: 35px; width: 25%;" class="text-center"><b>Place
+						of Supply </b></th>
+				<th style="height: 35px; width: 20%;" class="text-center"><b>Cust
+						State Code </b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>Invoice
+						No. </b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>Date
+				</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-center">
+
+				<td><span th:text="${party.gstNo}"> </span></td>
+				<td><span th:text="${party.address1}"> </span></td>
+				<td><span
+					th:text="${party.gstNo != null ? party.gstNo.substring(0, 2) : ''}">
+				</span></td>
+				<td><span th:text="${packageDetails.invoiceNO}"> </span></td>
+				<td><span th:text="${InvoiceDate}"> </span></td>
+			</tr>
+			<tr>
+				<td colspan="12">
+					<p style="margin-left: 8px;">Description of Service: Other
+						cargo and baggage handling services</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- <p>Description of Service: Other cargo and baggage handling
+		services</p> -->
+
+
+	<table class="table">
+		<thead>
+
+			<tr class="text-center">
+				<th scope="col" style="height: 35px;"><b> Sr.No. </b></th>
+				<th scope="col" style="height: 35px;"><b> Description </b></th>
+				<th scope="col" style="height: 35px;"><b> SAC Code </b></th>
+				<th scope="col" style="height: 35px;"><b> Qty(No.s) </b></th>
+				<th scope="col" style="height: 35px;"><b> Rate </b></th>
+				<th scope="col" style="height: 35px;"><b> Total </b></th>
+			</tr>
+
+		</thead>
+		<tbody>
+			<tr class="text-center">
+				<th scope="row">1</th>
+				<td>IMPORT Packages</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.importNop}"></td>
+				<td th:text="${importSimpleRate}"></td>
+				<td th:text="${packageDetails.importRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">2</th>
+				<td>IMPORT Sub Packages</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.importSubNop}"></td>
+				<td th:text="${importSimpleRate}"></td>
+				<td th:text="${packageDetails.importSubRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">3</th>
+				<td>EXPORT Packages</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.exportNop}"></td>
+				<td th:text="${exportSimpleRate}"></td>
+				<td th:text="${packageDetails.exportRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">4</th>
+				<td>EXPORT Sub Packages</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.exportSubNop}"></td>
+				<td th:text="${exportSimpleRate}"></td>
+				<td th:text="${packageDetails.exportSubRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">5</th>
+				<td>IIND SAT</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.holidaySubNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.holidayRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">5</th>
+				<td>Demurages</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.demuragesNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.demuragesRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">6</th>
+				<td>EXPORT SPL CART</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.exportSplCartNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.exportSplCartRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">7</th>
+				<td>EXPORT PC</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.exportPcNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.exportPcRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">8</th>
+				<td>EXPORT HW WT</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.exportHpNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.exportHpRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">9</th>
+				<td>EXPORT OC</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.exportOcNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.exportOcRate}"></td>
+			</tr>
+
+
+
+			<tr class="text-center">
+				<th scope="row">10</th>
+				<td>IMPORT SPL CART</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.importSplCartNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.importSplCartRate}"></td>
+
+			</tr>
+			<tr class="text-center">
+				<th scope="row">11</th>
+				<td>IMPORT PC</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.importPcNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.importPcRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">12</th>
+				<td>IMPORT HW WT</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.importHpNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.importHpRate}"></td>
+			</tr>
+			<tr class="text-center">
+				<th scope="row">13</th>
+				<td>IMPORT OC</td>
+				<td th:text="${Branch.sacCode}"></td>
+				<td th:text="${packageDetails.importOcNop}"></td>
+				<td></td>
+				<td th:text="${packageDetails.importOcRate}"></td>
+			</tr>
+
+
+			<tr class="text-center">
+				<td></td>
+				<td>NIPT PACKAGES: <span
+					th:text="${sumNiptNoOfPackages != 0.0 ? sumNiptNoOfPackages : ''}"></span>
+				</td>
+				<td><b>Total</b></td>
+				<td th:text="${sumTotalNop}"></td>
+				<td></td>
+				<td th:text="${sumTotalRates}"></td>
+
+
+			</tr>
+
+		</tbody>
+	</table>
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th rowspan="2" style="width: 60%;"> <span style="margin-left: 8px;"> <b>Amount in Words:</b></span></th>
+				<th rowspan="2" style="width: 3%;" class="text-center"><b>Sr No.</b></th>
+				<th colspan="2" class="text-center"><b>CGST </b></th>
+				<th colspan="2" class="text-center"><b>SGST</b></th>
+				<th colspan="2" class="text-center"><b>IGST</b></th>
+			</tr>
+			<tr class="text-center">
+				<th style="width: 4%;">Rate%</th>
+				<th style="width: 9%;">Amount</th>
+				<th style="width: 4%;">Rate%</th>
+				<th style="width: 9%;">Amount</th>
+				<th style="width: 4%;">Rate%</th>
+				<th style="width: 9%;">Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><strong style="margin-left: 8px;" th:text="${amountWords}"></strong> <b>Rupees Only</b></td>
+				<td class="text-center">1</td>
+				<td class="text-center">9</td>
+				<td class="text-center" th:text="${CGST}"></td>
+				<td class="text-center">9</td>
+				<td class="text-center" th:text="${SGST}"></td>
+				<td class="text-center">18</td>
+				<td class="text-center" th:text="${IGST}"></td>
+			</tr>
+
+
+
+			<tr>
+
+				<td colspan="12" ><span style="margin-left: 8px;">  Supply meant for
+					supply to SEZ units under LUT without payment of Integrated Tax</span></td>
+
+			</tr>
+			<tr>
+				<td colspan="12"><span  style="margin-left: 8px;"> ZERO RATED SUPPLY OF
+					SERVICES TO SEZ UNITS</span>  </td>
+
+			</tr>
+
+
+			<tr class="page-break">
+				<td colspan="2"><span  style="margin-left: 8px;">   Terms and Conditions:
+					Subject to Mumbai Juridiction. </span></td>
+				<td colspan="3" class="text-center" style="visibility: hidden;"></td>
+				<td colspan="2" class="text-center"><b> Summary </b></td>
+				<td colspan="2" class="text-center"><b>Amount </b></td>
+			</tr>
+			<tr>
+				<td colspan="2" ><span  style="margin-left: 8px;">Payment mode : Online
+					by Axis Bank Limited gateway </span>  </td>
+				<td colspan="3" class="text-center" style="visibility: hidden;"></td>
+				<td colspan="2" class="text-center">Invoice Value</td>
+				<td colspan="2" class="text-center" th:text="${sumTotalRates}"></td>
+
+			</tr>
+			<tr>
+				<td colspan="2" style="padding-left: 8px;"> <span> Beneficiary : DIAMOND
+					&amp; GEM DEVELOPMENT CORPORATION LTD. CUSTODIAN MUMBAI</span> </td>
+				<td colspan="3" class="blank-cell"></td>
+				<td colspan="2" class="text-center">CGST(1)</td>
+				<td colspan="2" class="text-center" th:text="${CGST}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"> <span  style="margin-left: 8px;">Bank Account No.:
+					923020012460018 </span> </td>
+				<td colspan="3" class="text-center" style="visibility: hidden;"></td>
+				<td colspan="2" class="text-center">SGST(2)</td>
+				<td colspan="2" class="text-center" th:text="${SGST}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span  style="margin-left: 8px;">Bank IFSC .:
+					UTIB0000173 </span> </td>
+				<td colspan="3" class="text-center" style="visibility: hidden;"></td>
+				<td colspan="2" class="text-center">IGST(3)</td>
+				<td colspan="2" class="text-center" th:text="${IGST}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span style="margin-left: 8px;">  Payment Due date : By
+					10th day of month</span></td>
+				<td colspan="3" class="text-center" style="visibility: hidden;"></td>
+				<td colspan="2" class="text-center">Total Gst(1+2+3)</td>
+				<td colspan="2" class="text-center" th:text="${TotalTax}"></td>
+			</tr>
+
+			<tr>
+				<td colspan="2">  <span style="margin-left: 8px;">E &amp; O E</span> </td>
+				<td colspan="3" class="text-center"></td>
+				<td colspan="2" class="text-center">Grand Total</td>
+				<td colspan="2" th:text="${TotalInvoiceAmount}" class="text-center"></td>
+
+			</tr>
+
+		</tbody>
+	</table>
+
+
+	<p style="margin-left: 8px;">Note :</p>
+	<p style="margin-left: 8px;">1. Computer generated invoice, No
+		signature required</p>
+	<p style="margin-left: 8px;">2. Any Discrepancies in the bill must
+		be intimated within two days of receipt of a bill</p>
+
+
+</body>
+</html>

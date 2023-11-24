@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Import_Pctm_Report</title>
+
+<style>
+/* Define page size and margins here */
+@page {
+ size: A4;
+   padding-top:18px;
+    padding-bottom:18px;
+	margin: 0.7cm;
+	counter-increment: page;
+	
+	
+	@top-right {
+	    padding-top:18px;
+	    padding-bottom:18px;
+        content: "Page " counter(page);
+        margin-top: 7cm;
+    }
+}
+.blank-cell {
+	border: none;
+	padding: 0; /* Optional: remove any padding/margin */
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+u {
+	line-height: 1;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.margin-top {
+	margin-top: 20px;
+}
+
+.text-right {
+	text-align: right;
+	display: flex;
+	justify-content: right;
+	align-items: right;
+}
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th {
+	/* text-align: center;
+	justify-content: center; */
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+	font-size: 9pt;
+}
+
+.table thead {
+	height: 18px;
+}
+
+.table td {
+	align-items: center;
+	border: 1px solid grey;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 8pt;
+	padding: 2px;
+}
+
+.customer {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 65%;
+	float: left;
+}
+
+.bold-text {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.part-2 {
+	font-size: 10pt;
+	width: 35%;
+	float: right;
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+.current-date {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+	text-align: end;
+}
+
+.no-spacing {
+	margin: 0;
+	padding: 0;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+</style>
+
+<style th:inline="text">
+@page {
+	size: A4; /* Adjust the page size if necessary */
+	counter-increment: page;
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+</style>
+
+</head>
+<body>
+
+
+	<script>
+		// JavaScript code to get the current date and update the span element
+		const currentDateElement = document.getElementById('currentDate');
+		const currentDate = new Date().toLocaleDateString('en-US');
+		currentDateElement.textContent = currentDate;
+	
+	</script>
+
+	<!-- Add the following Thymeleaf code to include the image in your HTML -->
+	<div style="text-align: center;">
+		<img
+			th:src="@{file:///C:/DGDC/Java%20Code/CWMS_JAVA/src/main/resources/static/image/DGDC.png}"
+			alt="DGDC LIMITED Logo"
+			style="width: 81%; height: auto; display: block; margin: 0 auto;" />
+	</div>
+
+	<div class="text-center"
+		style="padding-bottom: 1px; font-size: 10pt; font-weight: bold;">
+		<span style="font-size: 14pt; display: block;"> PCTM
+			REPORT</span><br /> <span style="display: block;">DGDC SEEPZ SEZ
+			STRONG ROOM</span> <span style="display: block;">MAIL LTD-CSI
+			AIRPORT, AIR CARGO COMPLEX, SAHAR MUMBAI-400099</span> <span
+			style="display: block;"><u>IMPORT - PRECIOUS CARGO
+				TRANSFER MANIFEST</u></span> <span style="display: block;">From Date: <span
+			th:text="${#dates.format(startDate, 'dd/MM/yyyy')}"></span> To Date:
+			<span th:text="${#dates.format(endDate, 'dd/MM/yyyy')}"></span></span>
+	</div>
+	<div style="padding-bottom: 1px; font-size: 9pt; font-weight: bold;">
+		<span style="display: block;">REPORT DATE: <span
+			th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span></span>
+		<span style="display: block;">PCTM NO: <span
+			th:each="pctmNo : ${selectedPctmNos}" th:text="${pctmNo}"></span></span> <span
+			style="display: block;">IGM NO: <span
+			th:each="igmNo : ${selectedIgmNos}" th:text="${igmNo}"></span></span>
+	</div>
+	<hr />
+	<div style="padding-bottom: 1px; font-size: 9pt;">
+		<span> Received from <b>Flight</b> - <span
+			th:text="${flightNameOnly}"></span> on <b>Flight Date and time</b> - <span
+			th:text="${flightNo}"></span> - <span
+			th:text="${#dates.format(flightDate, 'dd/MM/yyyy')}"></span> at DGDC
+			SEEPZ SEZ STRONG ROOM SAHAR In escort of
+		</span>
+	</div>
+	<table class="table page-number">
+		<thead>
+			<tr>
+				<th style="height: 35px; width: 7%;" class="text-center"><b>SR
+						NO.</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>SIR
+						NO </b></th>
+				<th style="height: 35px; width: 27%;" class="text-center"><b>IMPORTER
+						NAME</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>ORIGIN
+						AIRPORT</b></th>
+				<th style="height: 35px; width: 20%;" class="text-center"><b>MAWB
+						NO</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>HAWB
+						NO </b></th>
+				<th style="height: 35px; width: 5%;" class="text-center"><b>NOP</b></th>
+				<th style="height: 35px; width: 9%;" class="text-center"><b>WEIGHT (KGS)
+				</b></th>
+
+				<th style="height: 35px; width: 36%;" class="text-center"><b>DESC
+				</b></th>
+				<th style="height: 35px; width: 7%;" class="text-center"><b>CONSOLE
+				</b></th>
+				<th style="height: 35px; width: 7%;" class="text-center"><b>REMARKS
+				</b></th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="party, partyIndex : ${filterParty}">
+				<th:block th:each="invoiceDataOfParty1,invoicePData : ${invoiceAll}">
+					 	<!--<tr class="page-break" th:if="${invoicePData.index > 0 and invoicePData.index % 18 == 0}"></tr>
+-->					<th:block
+						th:if="${invoiceDataOfParty1.importerId == party.partyId}">
+						<tr class="text-center">
+							<td th:text="${invoicePData.count}"></td>
+							<td th:text="${invoiceDataOfParty1.sirNo}"></td>
+							<td th:text="${party.partyName}"></td>
+								<td th:text="${invoiceDataOfParty1.portOrigin}"></td>
+							<td th:text="${invoiceDataOfParty1.mawb}"></td>
+							<td th:text="${invoiceDataOfParty1.hawb}"></td>
+							<td th:text="${invoiceDataOfParty1.nop}"></td>
+							<td th:text="${invoiceDataOfParty1.grossWeight}"></td>
+							<td th:text="${invoiceDataOfParty1.descriptionOfGoods}"></td>
+								<td th:text="${invoiceDataOfParty1.consoleName}"></td>
+								<td th:text="${invoiceDataOfParty1.importRemarks}"></td> 
+						</tr>
+					</th:block>
+				</th:block>
+
+			</th:block>
+			<tr style="height: 9px;"></tr>
+			<!-- <tr>
+					<td class="text-center" style="font-weight: bold;"> Total</td>
+					<td></td>
+					<td></td>
+					<td class="text-center" style="font-weight: bold;"></td>
+					<td></td>
+					<td class="text-center" style="font-weight: bold;"	th:text="${TotaltotalInvoiceAmount}"></td>
+					<td class="text-center" style="font-weight: bold;"></td>
+					<td class="text-center" style="font-weight: bold;"th:text="${TotalGstAmount}"></td>	
+					<td class="text-center" style="font-weight: bold;"th:text="${TotalTxableAmount}"></td>	
+				</tr> -->
+		</tbody>
+	</table>
+	<div style="font-size: 9pt; font-weight: bold; white-space: nowrap;">
+    <span>Total No. Of Packages Received - <span th:text="${totalNoOfPackages}"></span></span>
+    <span style="margin-left: 9px;">By Flight No - <span th:text="${flightNo}"></span></span>
+    <span style="margin-left: 9px;">Total Distinct MAWB No - <span th:text="${totalDistinctMawbNo}"></span></span>
+    <span style="margin-left: 9px;">Total No. Of IGM No - <span th:text="${totalDistinctIgmNo}"></span></span>
+</div>
+
+<div style="font-size: 9pt; font-weight: bold; white-space: nowrap; display: flex; align-items: center;padding-top: 9px">
+    <span  style="margin-left: 54px;">Escort and Deposited - <span th:text="${totalNoOfPackages}"></span></span>
+    <span style="margin-left: 72px;">Pkgs By Flight - <span th:text="${flightName}"></span></span>
+    <span style="margin-left: 72px;"> On Date - <span th:text="${#dates.format(flightDate, 'dd/MM/yyyy')}"></span></span>
+</div>
+<div style="font-size: 9pt;text-align:center;padding-top: 9px;">
+<span>TO DGDC SEEPZ SEZ STRONG ROOM UNDER CUSTOMS PREVENTIVE SUPERVISION</span>
+</div>
+
+
+
+
+
+
+	<div style="font-size: 9pt; padding-top: 14px;">
+		<div style="width: 45%; margin-right: 5%; float: left;">
+			<span>Airline Staff Signature __________________</span><br />
+			<br /> <span>Name &nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__________________</span><br />
+			<br /> <span>Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				__________________</span><br />
+		</div>
+		<div style="width: 50%; float: right;">
+			<span>I.F.O Signature __________________</span><br />
+			<br /> <span>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__________________
+			</span><br />
+		
+			<br /> <span>Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__________________
+			</span><br />
+			<br />
+		</div>
+	</div>
+
+<div style="font-size: 9pt;text-align:center;padding-top: 18px;">
+<b><span>Received above consignment in full in apparent good order and condition except as noted in the Remarks Column</span></b>
+</div>
+
+
+<div style="font-size: 9pt; padding-top: 14px;">
+		<div style="width: 33%; float: left;border-right: 1px solid black;">
+			<span>Total No. Of Packages - <b><span th:text="${totalNoOfPackages}"></span></b></span><br/>
+			<span>Receivers Signature __________________</span><br/>
+			<br /> <span>Name
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __________________</span><br />
+			<br /> <span>Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				__________________</span><br/><br/><br/><span>Dy/Asst Custodian DGDC SEEPZ SEZ Strong Room,
+				Sahar, Mumbai - 99.</span><br />
+		</div>
+		<div style="width: 33%; float: right;border-left: 1px solid black;">
+			<span style="margin-left: 5px;">Total No. Of Packages - <b><span th:text="${totalNoOfPackages}"></span></b></span><br/>
+			<span style="margin-left: 5px;">Receivers Signature __________________</span><br/>
+			<br /> <span style="margin-left: 5px;">Name
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __________________</span><br />
+			<br /> <span style="margin-left: 5px;">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				  __________________</span><br/><br/><span style="margin-left: 5px;">Dy/Asst Custodian DGDC Seepz Sez
+Strong Room Gems and Jewellery complex-1 ,Seepz-Andheri,Mumbai-99</span><br />
+			<br />
+		</div>
+		<div style="width: 33%; float: right;">
+			<span>Total No. Of Packages - <b><span th:text="${totalNoOfPackages}"></span></b></span><br/>
+			<span>Receivers Signature __________________</span><br/>
+			<br /> <span>Name
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __________________</span><br />
+			<br /> <span>Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  __________________</span><br/><br/><span>For
+				M/s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __________________
+				(Carting Agent)</span><br /><br /> 
+			<br />
+		</div>
+	</div>
+	<div>
+	</div>
+  
+	<script th:inline="javascript">
+    const pageNumbers = document.querySelectorAll(".page-number p");
+
+    pageNumbers.forEach((pageNumber, index) => {
+        pageNumber.textContent = 'Page ' + (index + 1);
+    });
+</script>
+
+<!-- <script th:inline="javascript">
+const pageNumbers = document.querySelectorAll(".page-number p");
+
+pageNumbers.forEach((pageNumber, index) => {
+pageNumber.textContent = 'Page ' + (index + 1);
+});
+</script> -->
+</body>
+</html>

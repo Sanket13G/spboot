@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invoice</title>
+
+<style>
+/* Define page size and margins here */
+@page {
+	margin: 0.7cm;
+	margin-top: 0.5cm;
+	/* Adjust the margin values as needed (e.g., 1cm for smaller margins) */
+}
+
+ .blank-cell {
+        border: none;
+        padding: 0; /* Optional: remove any padding/margin */
+    }
+
+ .underline {
+        border-bottom: 1px solid black; /* You can customize the color and style of the underline */
+        display: inline-block; /* Ensures that the underline only spans the width of the text */
+        padding-bottom: 2px; /* Adjust this value to control the distance between the text and the underline */
+    }
+    
+.page-break {
+    page-break-before: always;
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.margin-top {
+	
+	margin-top: 20px;
+}
+
+
+
+
+
+.text-right {
+	text-align: right;
+	display: flex;
+	justify-content: right;
+	align-items: right;
+	margin-top: 40px;
+}
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th, .table td {
+	/* text-align: center;
+	justify-content: center; */
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+}
+
+.table thead {
+	height: 20px;
+}
+
+.table td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.customer {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 65%;
+	float: left;
+}
+
+.part-2 {
+	font-size: 10pt;
+	width: 35%;
+	float: right;
+}
+
+.page-break {
+	page-break-before: always;
+}
+.current-date {
+  font-size: 12pt;
+  padding: 0;
+  margin: 3px;
+  text-align: end;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+</style>
+
+</head>
+<body>
+	
+ <script>
+    // JavaScript code to get the current date and update the span element
+    const currentDateElement = document.getElementById('currentDate');
+    const currentDate = new Date().toLocaleDateString('en-US');
+    currentDateElement.textContent = currentDate;
+  </script>
+  
+  
+  
+<!-- Add the following Thymeleaf code to include the image in your HTML -->
+<img th:src="@{file:///C:/DGDC/Java%20Code/CWMS_JAVA/src/main/resources/static/image/DGDC1.png}" alt="DGDC LIMITED Logo" style="width: 50%; height: auto; display: block; margin: 0 auto;"/>
+	<br/>
+	
+	
+	
+<p class="text-center" style="margin: 1pt;">GATE PASS FOR Parcel Import/Export/DTA/Custom-Detention/Test/PC/SC </p>
+	
+	 <hr/>
+	<br/>
+	 <p class="current-date text-right">Delivery Date:  <b> <span class="underline" th:text="${Date}"></span></b></p>
+	
+	<p class="current-date text-right">Delivery Time: &nbsp;  <b> <span class="underline" th:text="${formattedTime}"></span></b></p>
+	 
+	<p  > Allow  &nbsp; <b> <span class="underline"  th:text="${FilteredImportSubList.size() +FilteredExportSubList.size() + FilteredImportList.size()}"></span></b> &nbsp; &nbsp;Parcel(s) of Detail As Per Below</p> 
+	 <br/>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>SR No.</b></th>
+				<th style="height: 35px; width: 20%;" class="text-center"><b>SER No. / SIR No.</b></th>
+				<th style="height: 35px; width: 20%;" class="text-center"><b>HAWB No./ RequestId </b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>Pkgs</b></th>
+				<th style="height: 35px; width: 35%;" class="text-center"><b>Name of Unit</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			 
+<th:block th:each="combinedList1, iterStat : ${FilteredExportSubList}">
+    <tr th:if="${iterStat.index > 0 and iterStat.index % 18 == 0}" class="page-break"></tr>
+
+    <tr class="text-center">
+        <td th:text="${iterStat.index + 1}"></td>
+        <td th:text="${combinedList1.serNo}"></td>
+        <td th:text="${combinedList1.requestId}"></td>
+        <td th:text="${combinedList1.nop}"></td>
+        <!--<td th:text="${combinedList1.exporter}"></td>-->
+        <td th:text="${names1[iterStat.index]}"></td> 
+    </tr>
+</th:block>
+
+<!-- ImportList -->
+<th:block th:each="combinedList1, iterStat : ${FilteredImportList}">
+    <tr th:if="${iterStat.index > 0 and (iterStat.index  + FilteredExportSubList.size()) % 18 == 0}" class="page-break"></tr>
+
+    <tr class="text-center">
+        <td th:text="${iterStat.index + 1 + FilteredExportSubList.size()}"></td>
+        <td th:text="${combinedList1.sirNo}"></td>
+        <td th:text="${combinedList1.hawb}"></td>
+        <td th:text="${combinedList1.nop}"></td>
+       <!-- <td th:text="${combinedList1.importerId}"></td>-->
+       <td th:text="${names3[iterStat.index]}"></td> 
+    </tr>
+</th:block>
+
+<!-- ImportSubList -->
+<th:block th:each="combinedList1, iterStat : ${FilteredImportSubList}">
+    <tr th:if="${iterStat.index > 0 and (iterStat.index + 1 + FilteredExportSubList.size() + FilteredImportList.size()) % 18 == 0}" class="page-break"></tr>
+
+    <tr class="text-center">
+        <td th:text="${iterStat.index + 1 + FilteredExportSubList.size() + FilteredImportList.size()}"></td>
+        <td th:text="${combinedList1.sirNo}"></td>
+        <td th:text="${combinedList1.requestId}"></td>
+        <td th:text="${combinedList1.nop}"></td>
+        <!--<td th:text="${combinedList1.exporter}"></td>-->
+         <td th:text="${names2[iterStat.index]}"></td> 
+    </tr>
+</th:block>
+
+		</tbody>
+	</table>
+	
+	  <br/>
+<p class="current-date text-right">  Parcel Checked and Received By &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+<P class="text-right " >Parcel Handed Over By &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Name Of Party / CHA:<span th:text="${partyName}"></span></P>
+ <br/>
+<P class="text-right " >DGDC Official Signature : &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Receivers Name : <span th:text="${RName}"></span></P>
+<br/>
+<p class="current-date text-right">  Receivers Signature &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+ 
+ 
+
+
+<!--<img th:src="@{file:///C:/DGDC/sign1.png}" 
+     alt="DGDC LIMITED Logo" 
+     style="width: 20%; height: auto; display: block; margin: 0 10% 0 0; float: right;"/>-->
+  
+  <div style="width: 20%; height: 100px; float: right; margin-right: 10%;">
+    <img th:src="@{file:///C:/DGDC/DGDCDATA/Documents/sign1.png}" 
+         alt="DGDC LIMITED Logo" 
+         style="width: 100%; height: 100%; display: block;"/>
+</div>
+   
+     
+<div style="clear: right;"></div>
+
+<p class="text-center" style="margin: 1pt;"><b>Note:The Gate Pass Should Be Handed Over To The Security Office Before Leaving DGDC Premises</b> </p>
+ <hr/>
+ 
+ 
+
+
+
+</body>
+</html>

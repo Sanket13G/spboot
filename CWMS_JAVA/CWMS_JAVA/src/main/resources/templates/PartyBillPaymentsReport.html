@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invoice</title>
+
+<style>
+/* Define page size and margins here */
+@page {
+	margin: 0.7cm;
+	margin-top: 0.5cm;
+	/* Adjust the margin values as needed (e.g., 1cm for smaller margins) */
+}
+
+ .blank-cell {
+        border: none;
+        padding: 0; /* Optional: remove any padding/margin */
+    }
+
+.page-break {
+    page-break-before: always;
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.margin-top {
+	
+	margin-top: 20px;
+}
+
+
+
+
+
+.text-right {
+	text-align: right;
+	display: flex;
+	justify-content: right;
+	align-items: right;
+	margin-top: 40px;
+}
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th, .table td {
+	/* text-align: center;
+	justify-content: center; */
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+}
+
+.table thead {
+	height: 20px;
+}
+
+.table td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.customer {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 65%;
+	float: left;
+}
+
+.part-2 {
+	font-size: 10pt;
+	width: 35%;
+	float: right;
+}
+
+.page-break {
+	page-break-before: always;
+}
+.current-date {
+  font-size: 12pt;
+  padding: 0;
+  margin: 3px;
+ justify-content: end;
+}
+
+.current-date1 {
+  font-size: 12pt;
+  padding: 0;
+  margin: 3px;
+  text-align: start;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+</style>
+
+</head>
+<body>
+	
+ <script>
+    // JavaScript code to get the current date and update the span element
+    const currentDateElement = document.getElementById('currentDate');
+    const currentDate = new Date().toLocaleDateString('en-US');
+    currentDateElement.textContent = currentDate;
+  </script>
+  
+  
+  
+<!-- Add the following Thymeleaf code to include the image in your HTML -->
+<img th:src="@{file:///C:/DGDC/Java%20Code/CWMS_JAVA/src/main/resources/static/image/DGDC1.png}" alt="DGDC LIMITED Logo" style="width: 50%; height: auto; display: block; margin: 0 auto;"/>
+	<br/>
+	
+	
+	
+<p class="text-center" style="margin: 1pt;">PARTY BILL PAYMENTS REPORT</p>
+	
+	
+	<br/>
+	
+	
+	<div>
+    <span class="current-date1">START DATE: <b><span th:text="${#dates.format(StartDate, 'MM/dd/yyyy')}"></span></b></span>
+    <span  class="current-date text-end">END DATE: <b><span th:text="${#dates.format(EndDate, 'MM/dd/yyyy')}"></span></b></span>
+    </div>
+
+
+	  <hr/>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>SR NO.</b></th>
+				<th style="height: 35px; width: 20%;" class="text-center"><b>PARTY NAME</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>INVOICE NO.</b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>INVOICE DATE</b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>INVOICE AMOUNT</b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b> AMOUNT PAID</b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>BALANCE AMOUNT</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			 
+
+			
+
+
+<th:block th:each="exportList1, iterStat : ${InvoiceList}">
+        <!-- Check if the current record is a multiple of 10 to add a page break -->
+        <tr th:if="${iterStat.index > 0 and iterStat.index % 10 == 0}" class="page-break"></tr>
+
+        <tr class="text-center">
+            <td th:text="${iterStat.index + 1}"></td>
+            <td th:text="${names[iterStat.index]}"></td> 
+            <td th:text="${exportList1.invoiceNO}"></td>
+            <td th:text="${exportList1.invoiceDate}"></td>
+            <td th:text="${exportList1.totalInvoiceAmount}"></td>
+            <td th:text="${exportList1.clearedAmt}"></td>          
+            <td th:text="${exportList1.totalInvoiceAmount - exportList1.clearedAmt}"></td>           
+            
+        </tr>
+    </th:block>
+    
+
+			<!-- Use page breaks as needed -->
+
+			<tr>						
+				
+			
+				<th colspan="4" class="text-center"> Total</th>
+				<td colspan="1" class="text-center"> <b> <span th:text="${totalInvoiceAmount}"></span></b></td>		
+				<td colspan="1" class="text-center"> <b> <span th:text="${totalAmountPaid}"></span></b></td>	
+				<td colspan="1" class="text-center"> <b> <span th:text="${total}"></span></b></td>		
+			</tr>
+		</tbody>
+	</table>
+	
+	 
+<h6 class="text-center" ></h6>
+
+
+
+
+</body>
+</html>

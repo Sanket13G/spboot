@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Party Bill Summary</title>
+
+	<style>
+		/* Add a new style class for responsive tables */
+		.responsive-table {
+			overflow-x: auto;
+		}
+
+		/* Define styles for pagination */
+		.pagination {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+		/* Add a class for table pagination */
+		.table-pagination {
+			page-break-before: always;
+		}
+
+		/* Adjust table styles for better readability */
+		.table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		.table th,
+		.table td {
+			text-align: center;
+			border: 1px solid grey;
+			padding: 1px;
+			/* Reduce padding for better fit */
+			font-size: 10pt;
+			/* Decrease font size */
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+
+		/* Adjust the font size for table headers and cells */
+
+
+		/* Add a class for the grand total row */
+		.grand-total {
+			font-weight: bold;
+		}
+
+		@media print {
+			.responsive-table {
+				overflow: auto;
+				page-break-inside: auto;
+			}
+
+			.table {
+				table-layout: fixed;
+				/* Ensure the table layout doesn't change during printing */
+				page-break-inside: auto;
+				/* Prevent the table from breaking within a page */
+			}
+
+			/* Adjust other styles as needed for printing */
+		}
+
+
+		.responsive-table {
+			overflow: auto;
+			page-break-inside: auto;
+		}
+
+		@media print {
+			@page {
+				size: landscape;
+				margin: 1.5cm 2cm 2cm 1.5cm;
+
+
+				/* Top margin 2cm, Right margin 1.5cm, Bottom margin 2cm, Left margin 1.5cm */
+			}
+
+
+		}
+
+		@page {
+			size: landscape;
+			/*margin: 1cm 2cm 2cm 1.5cm;
+			/* Top margin 2cm, Right margin 1.5cm, Bottom margin 2cm, Left margin 1.5cm */
+		}
+
+		.page-break {
+			page-break-after: always;
+		}
+
+		table.responsive-table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		table.responsive-table th,
+		table.responsive-table td {
+			text-align: center;
+			/* Your cell styling */
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<img src="file:///C:/DGDC/Java%20Code/CWMS_JAVA/src/main/resources/static/image/DGDC1.png"
+		alt="DGDC Image Not Found" style="width: 40%; height: auto; display: block; margin: 0 auto;" />
+
+
+	<h4 class="text-center">Bill Summary Report</h4>
+	<p>
+		Start Date: <b> <span th:text="${startDate}"></span></b> End Date:<b> <span th:text="${endDate}"></span></b>
+	</p>
+
+	<!--	<div class="pagination page-break">-->
+	<div>
+		<table class="table responsive-table table-head">
+			<thead class="table-head">
+				<tr class="text-center">
+					<th rowspan="2" colspan="1" th:style="'background:#BADDDA '">Sr No.</th>
+					<th colspan="2" th:style="'background:#BADDDA '">EXP PKGS</th>
+					<th colspan="2" th:style="'background:#BADDDA '">IMP PCKGS</th>
+					<th colspan="3" th:style="'background:#BADDDA '"></th>
+					<th colspan="4" th:style="'background:#BADDDA '">Export Details</th>
+					<th colspan="4" th:style="'background:#BADDDA '">Import Details</th>
+					<th colspan="5" th:style="'background:#BADDDA '">Grand Total</th>
+				</tr>
+				<tr class="text-center">
+					<th th:style="'background:#BADDDA '">EXP</th>
+					<th th:style="'background:#BADDDA '">SUB</th>
+					<th th:style="'background:#BADDDA '">IMP</th>
+					<th th:style="'background:#BADDDA '">SUB</th>
+					<th th:style="'background:#BADDDA '">TOT PKGS </th>
+					<th th:style="'background:#BADDDA '">IIND SAT</th>
+					<th th:style="'background:#BADDDA '">DEMU</th>
+					<th th:style="'background:#BADDDA '">SC</th>
+					<th th:style="'background:#BADDDA '">HW Wt</th>
+					<th th:style="'background:#BADDDA '">PC</th>
+					<th th:style="'background:#BADDDA '">OC</th>
+					<th th:style="'background:#BADDDA '">SC</th>
+					<th th:style="'background:#BADDDA '">HW Wt</th>
+					<th th:style="'background:#BADDDA '">PC</th>
+					<th th:style="'background:#BADDDA '">OC</th>
+					<th th:style="'background:#BADDDA '">Total Amount</th>
+					<th th:style="'background:#BADDDA '">IGST</th>
+					<th th:style="'background:#BADDDA '">SGST</th>
+					<th th:style="'background:#BADDDA '">CGST</th>
+					<th th:style="'background:#BADDDA '">Grand Total</th>
+				</tr>
+			</thead>
+
+			<tbody class="table-body">
+
+				<th:block th:each=" invoice,iterStat: ${invoiceDetails}">
+
+					<!--					<tr class="text-center" th:classappend="${iterStat.count % 4 == 0} ? 'page-break' : ''">
+-->
+					<tr class="text-center">
+						<td rowspan="1"></td>
+						<td colspan="4">
+							<span
+								th:text="${parties[iterStat.index].erpCode != null ? parties[iterStat.index].erpCode : 'NULL'}"></span>
+						</td>
+						<td colspan="3"><span th:text="${parties[iterStat.index].partyId}"></span></td>
+						<td colspan="4"><span th:text="${parties[iterStat.index].partyName}"
+								style="font-weight: bold;"></span></td>
+						<td colspan="4"><span th:text="${parties[iterStat.index].email}"></span></td>
+						<td colspan="5"><span th:text="${parties[iterStat.index].gstNo}"></span></td>
+					</tr>
+
+
+					<tr class="text-center">
+						<td th:text="${iterStat.index+1}"></td>
+						<td>
+							<span th:text="${invoice.exportNop.intValue()}"></span>
+							<br />
+							<span th:text="${invoice.exportRate.intValue()}"></span>
+						</td>
+
+						<td>
+							<span th:text="${invoice.exportSubNop.intValue()}"> </span> <br />
+							<span th:text="${invoice.exportSubRate.intValue()}"> </span>
+						</td>
+
+						<td> <span th:text="${invoice.importNop.intValue()}"> </span> <br />
+							<span th:text="${invoice.importRate.intValue()}"></span>
+						</td>
+
+						<td> <span th:text="${invoice.importSubNop.intValue()}"> </span> <br />
+							<span th:text="${invoice.importSubRate.intValue()}"> </span>
+						</td>
+
+						<td>
+							<span th:text="${invoice.exportNop.intValue() + invoice.importNop.intValue() +
+ invoice.importSubNop.intValue() + invoice.exportSubNop.intValue()}"> </span> <br />
+							<span th:text="${invoice.exportRate.intValue() + invoice.importRate.intValue() + invoice.importSubRate.intValue() +
+ invoice.exportSubRate.intValue()}"> </span>
+						</td>
+						<td th:text="${invoice.holidayRate.intValue()  }"></td>
+						<td th:text="${invoice.demuragesRate.intValue()  }"></td>
+
+						<td th:text="${invoice.exportSplCartRate.intValue()}"></td>
+						<td th:text="${invoice.exportHpRate.intValue()  }"></td>
+						<td th:text="${invoice.exportPcRate.intValue()  }"></td>
+						<td th:text="${invoice.exportOcRate.intValue()  }"></td>
+						<td th:text="${invoice.importSplCartRate.intValue()  }"></td>
+						<td th:text="${invoice.importHpRate.intValue()  }"></td>
+						<td th:text="${invoice.importPcRate.intValue()  }"></td>
+						<td th:text="${invoice.importOcRate.intValue()  }"></td>
+
+						<td>
+
+							<span th:text="${invoice.exportRate.intValue() + invoice.importRate.intValue() +
+ invoice.importSubRate.intValue() + invoice.exportSubRate.intValue() + invoice.holidayRate.intValue() +
+ invoice.demuragesRate.intValue() + invoice.exportSplCartRate.intValue() + invoice.exportHpRate.intValue() +
+ invoice.exportPcRate.intValue() + invoice.exportOcRate.intValue() + invoice.importSplCartRate.intValue() +
+ invoice.importHpRate.intValue() + invoice.importPcRate.intValue() + invoice.importOcRate.intValue()}"> </span>
+							<br /> <span th:text="${invoice.importSubRate.intValue()}"> </span>
+						</td>
+						<td th:if="${invoice.importNop.intValue() == 1}" th:text="${invoice.holidaySubNop.intValue()}">
+						</td>
+						<td th:if="${invoice.importNop.intValue() == 1}">0</td>
+						<td th:if="${invoice.importNop.intValue() == 1}">0</td>
+
+						<td th:if="${invoice.importNop.intValue() != 1}">0</td>
+						<td th:if="${invoice.importNop.intValue() != 1}"
+							th:text="${invoice.holidaySubNop.intValue() / 2}"></td>
+						<td th:if="${invoice.importNop.intValue() != 1}"
+							th:text="${invoice.holidaySubNop.intValue() / 2}"></td>
+
+						<td th:text="${invoice.exportRate.intValue() + invoice.importRate.intValue() +
+									invoice.importSubRate.intValue() + invoice.exportSubRate.intValue() + invoice.holidayRate.intValue() +
+									invoice.demuragesRate.intValue() + invoice.exportSplCartRate.intValue() + invoice.exportHpRate.intValue() +
+								   	invoice.exportPcRate.intValue() + invoice.exportOcRate.intValue() + invoice.importSplCartRate.intValue() +
+								   	invoice.importHpRate.intValue() + invoice.importPcRate.intValue() + invoice.importOcRate.intValue()+
+									invoice.holidaySubNop.intValue()}"></td>
+
+
+					</tr>
+
+
+				</th:block>
+			</tbody>
+			<tr class="text-center">
+				<td class="text-center" style="font-weight: bold;">Total</td>
+				<td> <span th:text="${totalExportNop}"> </span> <br /> <span th:text="${totalExportRate}"> </span> </td>
+				<td> <span th:text="${totalExportSubNop}"> </span> <br /> <span th:text="${totalExportSubRate}"> </span>
+				</td>
+
+				<td> <span th:text="${totalImportNop}"> </span> <br /> <span th:text="${totalImportRate}"> </span> </td>
+				<td> <span th:text="${totalImportSubNop}"> </span> <br /> <span th:text="${totalImportSubRate}"> </span>
+				</td>
+				<td> <span th:text="${
+  totalExportNop + totalImportNop + totalImportSubNop + totalExportSubNop}">
+					</span> <br /> <span th:text="${totalExportRate + totalImportRate +
+  totalImportSubRate + totalExportSubRate}"> </span> </td>
+
+
+
+				<td th:text="${totalHolidayRate}"></td>
+				<td th:text="${totalDemuragesRate  }"></td>
+
+				<td th:text="${totalExportSplCartRate}"></td>
+				<td th:text="${totalExportHpRate     }"></td>
+				<td th:text="${totalExportPcRate     }"></td>
+				<td th:text="${totalExportOcRate     }"></td>
+				<td th:text="${totalImportSplCartRate }"></td>
+				<td th:text="${totalImportHpRate      }"></td>
+				<td th:text="${totalImportPcRate     }"></td>
+				<td th:text="${totalImportOcRate     }"></td>
+
+				<td th:text="${totalExportRate + totalImportRate + totalImportSubRate +
+  totalExportSubRate+ totalExportSplCartRate+ totalExportHpRate +
+  totalExportPcRate + totalExportOcRate + totalImportSplCartRate+
+  totalImportHpRate + totalImportPcRate + totalImportOcRate+ totalHolidayRate+
+  totalDemuragesRate }"></td>
+
+
+				<td th:text="${totalIgst}"></td>
+				<td th:text="${totalSgst}"></td>
+				<td th:text="${totalCgst}"></td>
+
+				<td th:text="${ totalExportRate + totalImportRate + totalImportSubRate +
+  totalExportSubRate+ totalExportSplCartRate+ totalExportHpRate +
+  totalExportPcRate + totalExportOcRate + totalImportSplCartRate+
+  totalImportHpRate + totalImportPcRate + totalImportOcRate+ totalHolidayRate+
+  totalDemuragesRate +totalHolidaySubNop }">
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

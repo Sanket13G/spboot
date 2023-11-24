@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invoice</title>
+
+<style>
+/* Define page size and margins here */
+@page {
+	margin: 0.7cm;
+	margin-top: 0.5cm;
+	/* Adjust the margin values as needed (e.g., 1cm for smaller margins) */
+	@top-right {
+               content: "Page " counter(page); /* Add padding using non-breaking space */
+               
+                
+            }
+}
+
+.blank-cell {
+	border: none;
+	padding: 0; /* Optional: remove any padding/margin */
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.margin-top {
+	margin-top: 20px;
+}
+
+.text-right {
+	text-align: right;
+	display: flex;
+	justify-content: right;
+	align-items: right;
+}
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th, .table td {
+	/* text-align: center;
+	justify-content: center; */
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+}
+
+.table thead {
+	height: 20px;
+}
+
+.table td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.customer {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 65%;
+	float: left;
+}
+
+.part-2 {
+	font-size: 10pt;
+	width: 35%;
+	float: right;
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+.current-date {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+	text-align: end;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+
+.page-break {
+    page-break-before: always;
+}
+
+</style>
+
+<style th:inline="text">
+        @page {
+            size: A4; /* Adjust the page size if necessary */
+            counter-increment: page;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .page-number::before {
+            content: "Page " counter(page);
+            position: absolute;
+            top: 0;
+            float:'left';
+           
+        }
+    </style>
+
+</head>
+<body>
+<div class="page-number">
+
+	<script>
+		// JavaScript code to get the current date and update the span element
+		const currentDateElement = document.getElementById('currentDate');
+		const currentDate = new Date().toLocaleDateString('en-US');
+		currentDateElement.textContent = currentDate;
+	
+	</script>
+
+	<!-- Add the following Thymeleaf code to include the image in your HTML -->
+	<img
+		th:src="@{file:///C:/DGDC/Java%20Code/CWMS_JAVA/src/main/resources/static/image/DGDC1.png}"
+		alt="DGDC LIMITED Logo"
+		style="width: 65%; height: auto; display: block; margin: 0 auto;" />
+
+	<p class="text-center" style="padding-bottom: 5px;">
+		<b>GST REPORT</b>
+	</p>
+	<div style="padding-bottom: 4px;">
+		Start Date: <span th:text="${#dates.format(startDate, 'dd/MM/yyyy')}"></span>&nbsp;
+		End Date: <span th:text="${#dates.format(endDate, 'dd/MM/yyyy')}"></span>&nbsp;
+		<!-- Party Name: <span></span> -->
+	</div>
+
+	<table class="table page-number">
+		<thead>
+			<tr>
+				<th style="height: 35px; width: 7%;" class="text-center"><b>SR
+						NO.</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>BILL
+						NO.</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>BILL
+						DATE.</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>BILL
+						AMOUNT</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>GST
+						RATE</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>TAXABLE
+						AMOUNT</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>IGST</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>CGST</b></th>
+				<th style="height: 35px; width: 10%;" class="text-center"><b>SGST</b></th>
+				<th style="height: 35px; width: 13%;" class="text-center"><b>GST
+						TOTAL</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="party, partyIndex : ${filterParty}">
+				<tr class="text-center">
+					<td th:text="${partyIndex.count}"></td>
+					<td colspan="3" th:text="${party.partyName}"
+						style="font-weight: bold;"></td>
+					<td colspan="3" th:text="${party.email}"></td>
+					<td colspan="3" th:text="${party.gstNo}"></td>
+				</tr>
+				<th:block
+					th:with="partyTotalAmount=0, partyTotalBillAmount=0, partyTotalIGST=0, partyTotalCGST=0, partyTotalSGST=0, partyTotalTaxAmount=0">
+					<th:block
+						th:each="invoiceDataOfParty1,invoicePData : ${invoiceAll}">
+
+						<!-- <tr
+							th:if="${invoicePData.index > 0 and invoicePData.index % 18 == 0}"
+							
+							class="page-break"></tr>  -->
+						<!-- 	 <tr class="page-break page-number"
+						th:if="${invoicePData.index > 0 and invoicePData.index % 2 == 0}"></tr> -->
+						<th:block th:if="${invoiceDataOfParty1.partyId == party.partyId}">
+							<tr class="text-center">
+								<td></td>
+								<td th:text="${invoiceDataOfParty1.billNO}"></td>
+								<td
+									th:text="${#dates.format(invoiceDataOfParty1.invoiceDate, 'dd/MM/yyyy')}"></td>
+								<td th:text="${invoiceDataOfParty1.totalInvoiceAmount}"></td>
+								<td th:text="${party.taxApplicable == 'Y' ? '18%' : '0'}"></td>
+								<td th:text="${invoiceDataOfParty1.billAmount}"></td>
+								<td
+									th:text="${invoiceDataOfParty1.igst == 'Y' ? invoiceDataOfParty1.taxAmount : '0'}"></td>
+								<td
+									th:text="${invoiceDataOfParty1.igst == 'Y' ? '0' : invoiceDataOfParty1.taxAmount / 2}"></td>
+								<td
+									th:text="${invoiceDataOfParty1.igst == 'Y' ? '0' : invoiceDataOfParty1.taxAmount / 2}"></td>
+								<td th:text="${invoiceDataOfParty1.taxAmount}"></td>
+							</tr>
+							<th:block
+								th:with="partyTotalAmount=${partyTotalAmount + invoiceDataOfParty1.totalInvoiceAmount},
+                                       partyTotalBillAmount=${partyTotalBillAmount + invoiceDataOfParty1.billAmount},
+                                       partyTotalIGST=${partyTotalIGST + (invoiceDataOfParty1.igst == 'Y' ? invoiceDataOfParty1.taxAmount : 0)},
+                                       partyTotalCGST=${partyTotalCGST + (invoiceDataOfParty1.igst == 'Y' ? 0 : invoiceDataOfParty1.taxAmount / 2)},
+                                       partyTotalSGST=${partyTotalSGST + (invoiceDataOfParty1.igst == 'Y' ? 0 : invoiceDataOfParty1.taxAmount / 2)},
+                                       partyTotalTaxAmount=${partyTotalTaxAmount + invoiceDataOfParty1.taxAmount}">
+							</th:block>
+						</th:block>
+					</th:block>
+					</th:block>
+					<tr>
+						<td class="text-center" style="font-weight: bold;">Party
+							Total</td>
+						<td></td>
+						<td></td>
+						<td class="text-center" style="font-weight: bold;"
+							th:text="${TotalPartytotalInvoiceAmount[party.partyId]}"></td>
+						<td></td>
+						<td class="text-center" style="font-weight: bold;"
+							th:text="${TotalPartyTxableAmount[party.partyId]}"></td>
+						<td class="text-center" style="font-weight: bold;"
+							th:text="${TotalPartyIgst[party.partyId]}"></td>
+						<td class="text-center" style="font-weight: bold;"
+							th:text="${TotalPartyCgst[party.partyId]}"></td>
+						<td class="text-center" style="font-weight: bold;"
+							th:text="${TotalPartySgst[party.partyId]}"></td>
+						<td class="text-center" style="font-weight: bold;"
+							th:text="${TotalPartyGstAmount[party.partyId]}"></td>
+					</tr>
+					<tr style="height: 5px;"></tr>
+				
+			</th:block>
+			<tr style="height: 9px;"></tr>
+			<tr>
+				<td class="text-center" style="font-weight: bold;">Grand Total</td>
+				<td></td>
+				<td></td>
+				<td class="text-center" style="font-weight: bold;"
+					th:text="${TotaltotalInvoiceAmount}"></td>
+				<td></td>
+				<td class="text-center" style="font-weight: bold;"
+					th:text="${TotalTxableAmount}"></td>
+				<td class="text-center" style="font-weight: bold;"
+					th:text="${totalIgst}"></td>
+				<td class="text-center" style="font-weight: bold;"
+					th:text="${totalCgst}"></td>
+				<td class="text-center" style="font-weight: bold;"
+					th:text="${totalSgst}"></td>
+				<td class="text-center" style="font-weight: bold;"
+					th:text="${TotalGstAmount}"></td>
+			</tr>
+		</tbody>
+	</table>
+	</div> 
+	
+	
+	
+	
+	<script th:inline="javascript">
+    const pageNumbers = document.querySelectorAll(".page-number p");
+
+    pageNumbers.forEach((pageNumber, index) => {
+        pageNumber.textContent = 'Page ' + (index + 1);
+    });
+</script>
+</body>
+</html>

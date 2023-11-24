@@ -1,0 +1,39 @@
+<configuration>
+
+
+    <appender name="p6spyAppender" class="ch.qos.logback.core.FileAppender">
+        <file>C:/DGDC/Log/app.log</file>
+        <encoder>
+            <pattern>%n%n[%X{reactPageName}]%date</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>C:/DGDC/Log/app-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Console appender for printing log messages to console -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%n[%X{reactPageName}]%date - %msg%n%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hibernate.SQL" level="DEBUG">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger name="org.hibernate" level="ERROR">
+        <appender-ref ref="p6spyAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger name="com.p6spy" level="DEBUG">
+        <appender-ref ref="p6spyAppender"/>
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="p6spyAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+
+</configuration>

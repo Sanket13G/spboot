@@ -1,0 +1,254 @@
+1691494125161|5|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00100'
+1691494125212|0|commit|
+1691494125215|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00200'
+1691494125217|0|commit|
+1691494125219|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00300'
+1691494125238|2|statement|update userrights set allow_approve='N',allow_close=NULL,allow_create='Y',allow_delete='Y',allow_post=NULL,allow_read='N',allow_unclose=NULL,allow_unpost=NULL,allow_update='Y',approved_by='Sanket G',approved_date=NULL,created_by='Sanket G',created_date='2000-12-13T14:29:23.000+0530',edited_by=NULL,edited_date=NULL,favorite=NULL,status='A' where branch_id='B00001' and company_id='C00001' and process_id='P00300' and user_id='Shubham'
+1691494125247|7|commit|
+1691494125248|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00400'
+1691494125251|0|commit|
+1691494125252|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00500'
+1691494125254|0|commit|
+1691494125256|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00600'
+1691494125260|0|commit|
+1691494125261|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00700'
+1691494125264|0|commit|
+1691494125265|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00800'
+1691494125268|0|commit|
+1691494125269|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00900'
+1691494125272|0|commit|
+1691494125274|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01000'
+1691494125276|0|commit|
+1691494125278|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01100'
+1691494125280|0|commit|
+1691494125282|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01200'
+1691494125284|0|commit|
+1691494125285|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01300'
+1691494125288|0|commit|
+1691494125290|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01400'
+1691494125292|0|commit|
+1691494125294|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01500'
+1691494125299|0|commit|
+1691494125301|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01600'
+1691494125305|0|commit|
+1691494125306|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01700'
+1691494125313|0|commit|
+1691494125314|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01800'
+1691494125316|0|commit|
+1691494125318|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00601'
+1691494125320|0|commit|
+1691494125322|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00602'
+1691494125324|0|commit|
+1691494125325|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00603'
+1691494125327|0|commit|
+1691494125329|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00701'
+1691494125331|0|commit|
+1691494125332|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00702'
+1691494125334|0|commit|
+1691494125336|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00703'
+1691494125338|0|commit|
+1691494125340|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00704'
+1691494125342|0|commit|
+1691494125342|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00705'
+1691494125344|0|commit|
+1691494125346|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00706'
+1691494125348|0|commit|
+1691494125350|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00707'
+1691494125351|0|commit|
+1691494125353|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00708'
+1691494125355|0|commit|
+1691494125356|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01001'
+1691494125358|0|commit|
+1691494125360|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01002'
+1691494125361|0|commit|
+1691494125363|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01003'
+1691494125365|0|commit|
+1691494125367|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01004'
+1691494125368|0|commit|
+1691494125370|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01005'
+1691494125371|0|commit|
+1691494125373|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01006'
+1691494125374|0|commit|
+1691494125376|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01007'
+1691494125377|0|commit|
+1691494125379|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01008'
+1691494125380|0|commit|
+1691494125381|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01009'
+1691494125383|0|commit|
+1691494125385|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01010'
+1691494125386|0|commit|
+1691494125387|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01011'
+1691494125389|0|commit|
+1691494125390|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01012'
+1691494125392|0|commit|
+1691494125393|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01013'
+1691494125395|0|commit|
+1691494125396|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01014'
+1691494125398|0|commit|
+1691494125399|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01301'
+1691494125401|0|commit|
+1691494125403|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01302'
+1691494125404|0|commit|
+1691494125405|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01701'
+1691494125407|0|commit|
+1691494125408|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01702'
+1691494125409|0|commit|
+1691494125411|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01703'
+1691494125412|0|commit|
+1691494125414|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01704'
+1691494125415|0|commit|
+1691494125416|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01015'
+1691494125418|0|commit|
+1691494125420|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01016'
+1691494125421|0|commit|
+1691494125423|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01017'
+1691494125424|0|commit|
+1691494125425|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01018'
+1691494125426|0|commit|
+1691494125428|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01019'
+1691494125429|0|commit|
+1691494125431|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01020'
+1691494125433|0|commit|
+1691494480910|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00100'
+1691494480914|0|statement|update userrights set allow_approve='N',allow_close=NULL,allow_create='Y',allow_delete='Y',allow_post=NULL,allow_read='N',allow_unclose=NULL,allow_unpost=NULL,allow_update='Y',approved_by='Sanket G',approved_date=NULL,created_by='Sanket G',created_date='2000-12-13T14:29:23.000+0530',edited_by=NULL,edited_date=NULL,favorite=NULL,status='A' where branch_id='B00001' and company_id='C00001' and process_id='P00100' and user_id='Shubham'
+1691494480922|7|commit|
+1691494480924|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00200'
+1691494480925|0|commit|
+1691494480926|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00300'
+1691494480928|0|commit|
+1691494480929|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00400'
+1691494480930|0|commit|
+1691494480932|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00500'
+1691494480933|0|commit|
+1691494480934|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00600'
+1691494480935|0|commit|
+1691494480937|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00700'
+1691494480938|0|commit|
+1691494480940|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00800'
+1691494480942|0|commit|
+1691494480943|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00900'
+1691494480945|0|commit|
+1691494480946|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01000'
+1691494480947|0|commit|
+1691494480948|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01100'
+1691494480949|0|commit|
+1691494480950|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01200'
+1691494480951|0|commit|
+1691494480953|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01300'
+1691494480954|0|commit|
+1691494480955|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01400'
+1691494480957|0|commit|
+1691494480958|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01500'
+1691494480960|0|commit|
+1691494480963|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01600'
+1691494480964|0|commit|
+1691494480966|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01700'
+1691494480967|0|commit|
+1691494480968|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01800'
+1691494480969|0|commit|
+1691494480970|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00601'
+1691494480971|0|commit|
+1691494480973|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00602'
+1691494480974|0|commit|
+1691494480975|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00603'
+1691494480977|0|commit|
+1691494480978|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00701'
+1691494480979|0|commit|
+1691494480981|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00702'
+1691494480983|0|commit|
+1691494480984|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00703'
+1691494480985|0|commit|
+1691494480986|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00704'
+1691494480986|0|commit|
+1691494480989|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00705'
+1691494480990|0|commit|
+1691494480991|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00706'
+1691494480992|0|commit|
+1691494480994|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00707'
+1691494480995|0|commit|
+1691494480996|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P00708'
+1691494480998|0|commit|
+1691494480999|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01001'
+1691494481000|0|commit|
+1691494481002|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01002'
+1691494481004|0|commit|
+1691494481006|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01003'
+1691494481007|0|commit|
+1691494481008|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01004'
+1691494481010|0|commit|
+1691494481011|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01005'
+1691494481012|0|commit|
+1691494481013|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01006'
+1691494481014|0|commit|
+1691494481015|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01007'
+1691494481017|0|commit|
+1691494481018|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01008'
+1691494481019|0|commit|
+1691494481021|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01009'
+1691494481022|0|commit|
+1691494481023|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01010'
+1691494481025|0|commit|
+1691494481026|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01011'
+1691494481027|0|commit|
+1691494481028|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01012'
+1691494481029|0|commit|
+1691494481030|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01013'
+1691494481032|0|commit|
+1691494481034|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01014'
+1691494481036|0|commit|
+1691494481037|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01301'
+1691494481038|0|commit|
+1691494481039|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01302'
+1691494481041|0|commit|
+1691494481042|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01701'
+1691494481043|0|commit|
+1691494481045|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01702'
+1691494481046|0|commit|
+1691494481047|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01703'
+1691494481048|0|commit|
+1691494481049|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01704'
+1691494481051|0|commit|
+1691494481053|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01015'
+1691494481054|0|commit|
+1691494481055|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01016'
+1691494481057|0|commit|
+1691494481059|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01017'
+1691494481061|0|commit|
+1691494481063|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01018'
+1691494481064|0|commit|
+1691494481067|1|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01019'
+1691494481068|0|commit|
+1691494481070|0|statement|SELECT * FROM userrights AS u WHERE u.user_id = 'Shubham' AND u.process_id = 'P01020'
+1691494481072|0|commit|
+1691495295172|1|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495295173|0|commit|
+1691495295200|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495295201|0|commit|
+1691495295738|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495295740|0|commit|
+1691495295755|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495295756|0|commit|
+1691495296191|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495296192|0|commit|
+1691495296202|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495296203|0|commit|
+1691495297450|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495297451|0|commit|
+1691495297460|0|statement|select e1_0.id,e1_0.dgdc_status,e1_0.end_date,e1_0.heavy,e1_0.hold,e1_0.personal_carriage,e1_0.provisional,e1_0.search_string,e1_0.special_carting,e1_0.start_date from export e1_0
+1691495297461|0|commit|
+1691495326042|2|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495326047|1|commit|
+1691495326060|0|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495326065|0|commit|
+1691495326075|0|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495326078|0|commit|
+1691495326087|1|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495326090|0|commit|
+1691495329702|0|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495329705|0|commit|
+1691495329713|0|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495329714|0|commit|
+1691495329720|0|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495329721|0|commit|
+1691495329728|0|statement|select p1_0.branch_id,p1_0.company_id,p1_0.party_id,p1_0.address_1,p1_0.address_2,p1_0.address_3,p1_0.approved_by,p1_0.approved_date,p1_0.city,p1_0.country,p1_0.created_by,p1_0.created_date,p1_0.credit_limit,p1_0.edited_by,p1_0.edited_date,p1_0.email,p1_0.entity_id,p1_0.erp_code,p1_0.gst_no,p1_0.iec_no,p1_0.loa_expiry_date,p1_0.loa_issue_date,p1_0.loa_number,p1_0.mobile_no,p1_0.pan_no,p1_0.party_code,p1_0.party_name,p1_0.phone_no,p1_0.pin,p1_0.state,p1_0.status,p1_0.unit_admin_name,p1_0.unit_type from party p1_0
+1691495329729|0|commit|

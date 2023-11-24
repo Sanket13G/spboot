@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Demurage History</title>
+
+<style>
+/* Define page size and margins here */
+@page {
+	margin: 0.7cm;
+	margin-top: 0.5cm;
+	/* Adjust the margin values as needed (e.g., 1cm for smaller margins) */
+}
+
+.blank-cell {
+	border: none;
+	padding: 0; /* Optional: remove any padding/margin */
+}
+
+p {
+	font-size: 12pt;
+	padding: 0;
+	margin: 3px;
+}
+
+h1 {
+	font-size: 20pt;
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	font-size: 10pt;
+}
+
+td {
+	font-size: 9pt;
+}
+/* Center text horizontally and vertically */
+.text-center {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Style tables */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table th, .table td {
+	/* text-align: center;
+	justify-content: center; */
+	align-items: center;
+	border: 1px solid grey;
+	color: graytext;
+}
+
+.table thead {
+	height: 20px;
+}
+
+.table td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.customer {
+	width: 100%;
+	overflow: hidden; /* Clear any floats */
+	margin-top: 1pt;
+}
+
+.part-1 {
+	font-size: 10pt;
+	width: 65%;
+	float: left;
+}
+
+.part-2 {
+	font-size: 10pt;
+	width: 35%;
+	float: right;
+}
+
+.page-break {
+	page-break-before: always;
+}
+
+p br {
+	content: " "; /* Add a space character */
+	margin-top: 0.1px; /* Adjust the margin-top value as needed */
+	display: block; /* Ensure the space is displayed */
+}
+
+table.table th, table.table td {
+	font-weight: normal; /* Set the font weight to normal */
+}
+</style>
+
+</head>
+<body>
+
+
+
+	<h1 class="text-center">
+		<b>DGDC LIMITED </b>
+	</h1>
+	<p class="text-center" style="margin: 1pt;">ADDRESS FOR SUPPLY OF
+		SERVICE:</p>
+	<p class="text-center" style="margin: 1pt;">Unit No.50, Plot F-1
+		SDF, Gem &amp; Jewellery Complex 1,SEEPZ-SEZ, Mumbai -400096</p>
+
+	<h1 class="text-center">
+		<b>Demurages Charges</b>
+	</h1>
+
+
+	<div class="customer" style="border: 1px grey solid">
+
+		<div class="part-1">
+
+			<p>
+				Customer Name: <b> <span th:text="${party.partyName}"></span></b>
+			</p>
+
+			<p>
+				Customer Exim Code:
+				<!--  <span th:text="${party.partyName}"></span> -->
+			</p>
+
+			<p>
+				Customer Code:
+				<!-- <span th:text="${party.partyName}"></span> -->
+			</p>
+
+			<p>
+				Address: <span th:text="${party.address1}"></span>
+			</p>
+
+		</div>
+
+		<div class="part-2">
+
+			<p style="font-size: 11pt">
+				DGDC GSTIN: <b> <span th:text="${Branch.GST_No}"></span></b>
+			</p>
+
+			<p style="font-size: 11pt">
+				DGDC PAN NO: <span th:text="${Branch.Pan_No}"></span>
+			</p>
+			<p style="font-size: 11pt">
+				DGDC CIN: <span th:text="${Branch.cin}"></span>
+			</p>
+
+
+
+		</div>
+
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="height: 35px; width: 25%;" class="text-center"><b>Customer
+						GSTIN </b></th>
+				<th style="height: 35px; width: 25%;" class="text-center"><b>Place
+						of Supply </b></th>
+				<th style="height: 35px; width: 20%;" class="text-center"><b>Cust
+						State Code </b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>Invoice
+						No. </b></th>
+				<th style="height: 35px; width: 15%;" class="text-center"><b>Date
+				</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-center">
+
+				<td><span th:text="${party.gstNo}"> </span></td>
+				<td><span th:text="${party.address1}"> </span></td>
+				<td><span
+					th:text="${party.gstNo != null ? party.gstNo.substring(0, 2) : ''}">
+				</span></td>
+				<td><span th:text="${invoiceNO}"> </span></td>
+				<td><span th:text="${InvoiceDate}"> </span></td>
+			</tr>
+			<tr>
+				<td colspan="12">
+					<p style="margin-left: 8px;">
+						Description of Service: <b>Demurages Charges </b>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<table class="table" style="margin-top: 5px;">
+		<thead>
+			<tr class="text-center" style="height: 40px;">
+				<th style="width: 8%;">Sr No</th>
+				<th style="width: 13%;">MAWB / SB</th>
+				<th style="width: 13%;">HAWB / REQ</th>
+				<th style="width: 12%;">Packages</th>
+				<th style="width: 15%;">In Date</th>
+				<th style="width: 15%;">Out Date</th>
+				<th style="width: 10%;">Rate</th>
+				<th style="width: 10%;">Service Type</th>
+			</tr>
+		</thead>
+
+		<tbody class="text-center">
+
+			<tr th:each="Demurage, DemurageStat : ${Demurage}"
+				class="text-center">
+
+				<td th:text="${DemurageStat.index + 1}">1</td>
+				<td th:text="${Demurage.MasterNo}"></td>
+				<td th:text="${Demurage.SubMasterNo}"></td>
+				<td th:text="${Demurage.packages}"></td>
+				<td th:text="${#dates.format(Demurage.inDate, 'dd/MM/yyyy')}"></td>
+				<td th:text="${#dates.format(Demurage.outDate, 'dd/MM/yyyy')}"></td>
+				<td th:text="${Demurage.demurageRate}"></td>
+				<td th:text="${Demurage.packageType}"></td>
+
+			</tr>
+
+
+		</tbody>
+
+
+
+
+	</table>
+
+
+</body>
+</html>
